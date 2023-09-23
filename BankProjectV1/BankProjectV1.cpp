@@ -451,6 +451,9 @@ void printAccessDeniedHeader(short permissions) {
     goBackToMainMenue(permissions);
 }
 void checkIfUserHaveAccess(short permissions,userChoices userChoice) {
+    if (permissions == -1) {
+        return;
+    }
     short number = 1;
     short i = 1;
     while (i<short(userChoice)) {
@@ -458,7 +461,7 @@ void checkIfUserHaveAccess(short permissions,userChoices userChoice) {
         i++;
     }
     short result = permissions & number;
-    if (result == 0) {
+    if (result != number) {
         printAccessDeniedHeader(permissions);
         goBackToMainMenue(permissions);
     }
